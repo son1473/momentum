@@ -2,6 +2,12 @@
 const API_KEYS = "88ca25e50dcfb873bbea85ac90d2fd2a";
 const COORDS = 'coords';
 
+function getWeather(lat, lon){
+	fetch(`api.openweathermap.rg/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEYS}&// units=metric 온도 섭씨로 바꾸기.`)
+	// units=metric 온도 섭씨로 바꾸기.
+}
+
+
 function saveCoords(coordsObj){
 	localStorage.setItem(COORDS, JSON.stringify(coordsObj));
 	// 키 값은 coords로, value 값은 객체를 문자열화 해서 저장한다.
@@ -15,6 +21,7 @@ function handleGeoSucces(position){
 		longitude: longitude // 2가 값으로.
 	};
 	saveCoords(coordsObj);
+	getWeather(latitude, longitude);
 }
 
 function handleGeoError(){
@@ -30,8 +37,8 @@ function loadCoords(){
 	if(loadedCoords === null){
 		askForCoords();
 	} else {
-		//get weather
-
+		const parseCoords = JSON.parse(loadedCoords);
+		getWeather(parseCoords.latitude, parseCoords.longitude);
 	}
 }
 
