@@ -1,5 +1,5 @@
 //현재 위치 값을 가져와 보았다.
-
+const API_KEYS = "88ca25e50dcfb873bbea85ac90d2fd2a";
 const COORDS = 'coords';
 
 function saveCoords(coordsObj){
