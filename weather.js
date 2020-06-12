@@ -1,9 +1,19 @@
 //현재 위치 값을 가져와 보았다.
+const weather = document.querySelector(".js-weather");
+
 const API_KEYS = "88ca25e50dcfb873bbea85ac90d2fd2a";
 const COORDS = 'coords';
 //자바스크립트는 refresh 하지 않아도 자동으로 데이터를 가져올 수 있다.
 function getWeather(lat, lon){
-	fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEYS}&units=metric`);
+	fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEYS}&units=metric`
+		).then(function(response) {
+			return response.json();
+		}).then(function(json) {
+			const temperature = json.main.temp;
+			const place = json.name;
+			weather.innerText = `${temperature} @ ${place}`;
+		}); //fetch가 먼저 실행되고 실행되야하기 때문에 
+
 	// units=metric 온도 섭씨로 바꾸기.
 }
 
@@ -30,6 +40,7 @@ function handleGeoError(){
 
 function askForCoords(){
 	navigator.geolocation.getCurrentPosition(handleGeoSucces, handleGeoError);
+	console.log('a');
 }
 
 function loadCoords(){
