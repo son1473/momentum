@@ -29,7 +29,7 @@ function askForName(){
 function paintGreeting(text){
   form.classList.remove(SHOWING_CN);
   greeting.classList.add(SHOWING_CN); //h4 태그에 뭘 추가?
-  greeting.innerText = `${text}님 반갑습니다:)`; //h4에 입력 합니다. hello text
+  greeting.innerText = `Have a best day ${text}!`; //h4에 입력 합니다. hello text
 }
 
 function loadName() {
