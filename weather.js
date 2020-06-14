@@ -1,4 +1,4 @@
-//현재 위치 값을 가져와 보았다.
+//현재 위치 값을 가져와 날씨 api를 적용.
 const weather = document.querySelector(".js-weather");
 
 const API_KEYS = "88ca25e50dcfb873bbea85ac90d2fd2a";
@@ -11,8 +11,8 @@ function getWeather(lat, lon){
 		}).then(function(json) {
 			const temperature = json.main.temp;
 			const place = json.name;
-			weather.innerText = `${temperature} @ ${place}`;
-		}); //fetch가 먼저 실행되고 실행되야하기 때문에 
+			weather.innerText = `${place} - ${temperature}℃`;
+		}); //fetch 먼저 하고 함수 실행 하기위해 then 사용함.
 
 	// units=metric 온도 섭씨로 바꾸기.
 }
